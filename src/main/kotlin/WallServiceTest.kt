@@ -1,6 +1,8 @@
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import ru.netology.Comment
+import ru.netology.Exceptions.PostNotFoundException
 import ru.netology.Post
 import ru.netology.WallService
 
@@ -40,5 +42,16 @@ class WallServiceTest {
             attachment = emptyList()))
 
         assertTrue(service.id != 0)
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        WallService.add(Post(id = 2, ownerId = 33, text = "Новая Нетология", likes = 2, views = 4, repost = null,
+            attachment = emptyList())
+        )
+        val comment = Comment(1, 11_10_2020, "Первый комментарий", emptyList())
+        WallService.commentCreate(comment)
+
+        shouldThrow()
     }
 }

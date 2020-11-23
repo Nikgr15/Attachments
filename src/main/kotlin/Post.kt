@@ -8,4 +8,5 @@ data class Post(
     val views: Int,
     val repost: Post?,
     val attachment: List<Attachment>
+    val comments: List<Comment>
 )
