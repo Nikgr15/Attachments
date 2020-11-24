@@ -4,7 +4,7 @@ import ru.netology.Exceptions.PostNotFoundException
 
 object WallService {
     private var posts = emptyArray<Post>()
-
+    private var comments = mutableListOf<Comment>()
 
     fun add(post: Post): Post {
         val currId = posts.lastOrNull()?.id ?: 0
@@ -31,7 +31,6 @@ object WallService {
     private fun createComment(comment: Comment): Boolean {
         for (post: Post in posts) {
             if (post.id == comment.id) {
-                val comments = mutableListOf<Comment>()
                 comments.add(comment)
                 return true
             }
